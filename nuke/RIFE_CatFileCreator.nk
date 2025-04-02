@@ -1,4 +1,83 @@
+#! C:/Program Files/Nuke14.0v3/nuke-14.0.3.dll -nx
+version 14.0 v3
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="0" y="0" w="2557" h="1381" screen="0">
+        <splitter orientation="1">
+            <split size="40"/>
+            <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                <page id="Toolbar.1"/>
+            </dock>
+            <split size="1894" stretch="1"/>
+            <splitter orientation="2">
+                <split size="786"/>
+                <dock id="" activePageId="Viewer.1">
+                    <page id="Viewer.1"/>
+                </dock>
+                <split size="553"/>
+                <dock id="" activePageId="DAG.1" focus="true">
+                    <page id="DAG.1"/>
+                    <page id="Curve Editor.1"/>
+                    <page id="DopeSheet.1"/>
+                </dock>
+            </splitter>
+            <split size="615"/>
+            <dock id="" activePageId="Properties.1">
+                <page id="Properties.1"/>
+                <page id="uk.co.thefoundry.backgroundrenderview.1"/>
+                <page id="Scenegraph.1"/>
+            </dock>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name C:/Users/rcmArtist_63/source/repos/RIFE-for-Nuke/nuke/RIFE_CatFileCreator.nk
+ colorManagement OCIO
+ defaultViewerLUT "OCIO LUTs"
+ workingSpaceLUT scene_linear
+ monitorLut "sRGB (ACES)"
+ monitorOutLUT "Rec.709 (ACES)"
+ int8Lut matte_paint
+ int16Lut texture_paint
+ logLut compositing_log
+ floatLut scene_linear
+ addUserKnob {20 User}
+ addUserKnob {6 global_custom_proxy_mode -STARTLINE}
+ addUserKnob {20 Deadline}
+ addUserKnob {1 FrameListMode l frameListMode}
+ addUserKnob {1 CustomFrameList l customFrameList}
+ addUserKnob {1 Department l department}
+ addUserKnob {1 Pool l pool}
+ addUserKnob {1 SecondaryPool l secondaryPool}
+ addUserKnob {1 Group l group}
+ addUserKnob {1 Priority l priority}
+ addUserKnob {1 MachineLimit l machineLimit}
+ addUserKnob {1 IsBlacklist l isBlacklist}
+ addUserKnob {1 MachineList l machineList}
+ addUserKnob {1 LimitGroups l limitGroups}
+ addUserKnob {1 SubmitSuspended l submitSuspended}
+ addUserKnob {1 ChunkSize l chunkSize}
+ addUserKnob {1 ConcurrentTasks l concurrentTasks}
+ addUserKnob {1 LimitConcurrentTasks l limitConcurrentTasks}
+ addUserKnob {1 Threads l threads}
+ addUserKnob {1 SubmitScene l submitScene}
+ addUserKnob {1 BatchMode l batchMode}
+ addUserKnob {1 ContinueOnError l continueOnError}
+ addUserKnob {1 SeparateJobs l separateJobs}
+ addUserKnob {1 UseNodeRange l useNodeRange}
+ addUserKnob {1 UseGpu l useGpu}
+ addUserKnob {1 UseSpecificGpu l useSpecificGpu}
+ addUserKnob {1 ChooseGpu l chooseGpu}
+ addUserKnob {1 EnforceRenderOrder l enforceRenderOrder}
+ addUserKnob {1 DeadlineRenderMode l deadlineRenderMode}
+ addUserKnob {1 PerformanceProfiler l performanceProfiler}
+ addUserKnob {1 ReloadPlugin l reloadPlugin}
+ addUserKnob {1 PerformanceProfilerPath l performanceProfilerPath}
+}
 CatFileCreator {
+ inputs 0
  torchScriptFile "\[python \{nuke.script_directory()\}]/Cattery/RIFE/RIFE.pt"
  catFile "\[python \{nuke.script_directory()\}]/Cattery/RIFE/RIFE.cat"
  channelsIn rgba.red,rgba.green,rgba.blue,rgba.alpha,forward.u,forward.v,backward.u,backward.v
@@ -6,6 +85,8 @@ CatFileCreator {
  modelId RIFEv4
  name CatFileCreator_RIFE
  tile_color 0x1f00ffff
+ xpos 680
+ ypos -9
  postage_stamp false
  addUserKnob {20 User}
  addUserKnob {7 timestep}
@@ -14,4 +95,12 @@ CatFileCreator {
  scale 1
  addUserKnob {6 optical_flow +STARTLINE}
  addUserKnob {6 ensemble +STARTLINE}
+}
+Inference {
+ inputs 0
+ modelFile C:/Users/rcmArtist_63/source/repos/RIFE-for-Nuke/nuke/Cattery/RIFE/RIFE.cat
+ serialiseKnob {}
+ name Inference1
+ xpos 892
+ ypos -15
 }
